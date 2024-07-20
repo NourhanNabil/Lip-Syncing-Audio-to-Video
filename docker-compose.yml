@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  lip-syncing-service:
+    build: .
+    image: lip-syncing-audio-to-video
+    container_name: lip-syncing-audio-to-video-container
+    ports: 
+      - "8080:8080"
+    env_file: 
+      - .env
