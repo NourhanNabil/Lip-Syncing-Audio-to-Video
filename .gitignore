@@ -1,0 +1,8 @@
+*__pycache__
+.env
+results
+ffmpeg-7.0.1-amd64-static
+musetalk/models/musetalk
+*.mp4
+*.wav
+convert_torsh_onnx.py
