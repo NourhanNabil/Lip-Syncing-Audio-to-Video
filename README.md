@@ -31,6 +31,10 @@ mim install "mmpose>=1.1.0"
   export FFMPEG_PATH=/musetalk/ffmpeg-7.0.1-amd64-static
 ``` 
 
+### Download models
+``` bash
+  python download_models.py
+``` 
 
 ### Prerequisites
 - Docker installed on your machine.

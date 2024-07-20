@@ -3,7 +3,6 @@ from fastapi.responses import JSONResponse
 
 from Utils.FileUtils import FileUtils
 from inference import main as inference_main
-from download_models import download_models
 
 lip_syncing_router = APIRouter()
 
@@ -17,7 +16,6 @@ async def generate_lip_syncing(video: UploadFile = File(...), audio: UploadFile 
     audio_path = FileUtils.save_audio_video(audio.filename,audio_content)
 
     try:
-        download_models()
         inference_main(video_path,audio_path)
         return JSONResponse(status_code=status.HTTP_200_OK, content={"message": "Lip-syncing video generated successfully"})
     except Exception as e:
