@@ -25,11 +25,12 @@ mim install "mmpose>=1.1.0"
 ### Download ffmpeg-static
 ``` bash
  wget -O ffmpeg-release-amd64-static.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
- tar -xvf ffmpeg-release-amd64-static.tar.xz -C musetalk --strip-components=1
+ tar -xvf ffmpeg-release-amd64-static.tar.xz -C musetalk
 ```
 ``` bash
-  export FFMPEG_PATH=/musetalk/ffmpeg-4.4-amd64-static
+  export FFMPEG_PATH=/musetalk/ffmpeg-7.0.1-amd64-static
 ``` 
+
 
 ### Prerequisites
 - Docker installed on your machine.
@@ -43,7 +44,7 @@ docker-compose up -d
 ```
 2. For interactive shell access while the container is running, you can use:
 ``` bash 
-docker-compose exec app bash
+docker-compose exec lip-syncing-service bash
 ```
 3. Shut Down the Containers:
 ```bash
