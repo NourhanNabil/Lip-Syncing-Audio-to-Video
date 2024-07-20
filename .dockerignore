@@ -2,3 +2,9 @@ Dockerfile
 README.md
 *.mp4
 *.wav
+sd-vae-ft-mse
+face-parse-bisent
+whisper
+dwpose
+musetalk/models/musetalk
+convert_torsh_onnx.py

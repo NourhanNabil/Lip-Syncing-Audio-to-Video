@@ -6,3 +6,7 @@ musetalk/models/musetalk
 *.mp4
 *.wav
 convert_torsh_onnx.py
+sd-vae-ft-mse
+face-parse-bisent
+whisper
+dwpose
