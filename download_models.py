@@ -46,6 +46,7 @@ if os.path.isdir(CheckpointsDir):
 
     # Download ResNet weights
     download_file("https://download.pytorch.org/models/resnet18-5c106cde.pth", os.path.join(face_parse_dir, "resnet18-5c106cde.pth"))
-
+    
+    print("All models downloaded")
 else:
     print("Model already downloaded.")
