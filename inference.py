@@ -20,15 +20,19 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 timesteps = torch.tensor([0], device=device)
 
 @torch.no_grad()
-def main(video_path, audio_path, result_dir="results", bbox_shift=0, output_vid_name="output", use_saved_coord=True, fps=None, batch_size=1):
-    output_vid_path = os.path.join(result_dir, output_vid_name + ".mp4")
-    result_img_save_path = os.path.join(result_dir, output_vid_name) # related to video & audio inputs
-    crop_coord_save_path = os.path.join(result_img_save_path, output_vid_name+".pkl") # only related to video input
+def main(video_path, audio_path, result_dir="results", bbox_shift=0, output_vid_name="output.mp4", use_saved_coord=True, fps=None, batch_size=1):
+    input_basename = os.path.basename(video_path).split('.')[0]
+    audio_basename  = os.path.basename(audio_path).split('.')[0]
+    output_basename = f"{input_basename}_{audio_basename}"
+    result_img_save_path = os.path.join(result_dir, output_basename) # related to video & audio inputs
+    crop_coord_save_path = os.path.join(result_img_save_path, input_basename+".pkl") # only related to video input
     os.makedirs(result_img_save_path,exist_ok =True)
-   
+    
+    output_vid_name = os.path.join(result_dir, output_vid_name)
+    
     #extract frames from source video
     if FileUtils.get_file_type(video_path) == "video":
-        save_dir_full = os.path.join(result_dir, "images")
+        save_dir_full = os.path.join(result_dir, input_basename)
         os.makedirs(save_dir_full,exist_ok = True)
         cmd = f"ffmpeg -v fatal -i {video_path} -start_number 0 {save_dir_full}/%01d.png"
         os.system(cmd)
@@ -110,10 +114,11 @@ def main(video_path, audio_path, result_dir="results", bbox_shift=0, output_vid_
     print(cmd_img2video)
     os.system(cmd_img2video)
     
-    cmd_combine_audio = f"ffmpeg -y -v warning -i {audio_path} -i temp.mp4 {output_vid_path}"
+    cmd_combine_audio = f"ffmpeg -y -v warning -i {audio_path} -i temp.mp4 {output_vid_name}"
     print(cmd_combine_audio)
     os.system(cmd_combine_audio)
     
     os.remove("temp.mp4")
     shutil.rmtree(result_img_save_path)
-    print(f"result is save to {output_vid_path}")
+    print(f"result is save to {output_vid_name}")
+
