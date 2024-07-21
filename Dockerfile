@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.10-slim
 
 WORKDIR /app
 
@@ -8,7 +8,11 @@ RUN pip install -r requirements.txt
 
 COPY . . 
 
+RUN chmod +x start.sh
+
 EXPOSE 8080
 
-CMD ["python", "main.py"]
+CMD ["bash", "./start.sh"]
+
+
 
